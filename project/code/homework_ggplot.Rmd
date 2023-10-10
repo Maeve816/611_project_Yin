@@ -12,8 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 
 Necessary libraries and data input
+data can be found in <https://github.com/Maeve816/611_project_Yin/tree/main/project/source_data/updated>
 
 ```{r}
+setwd("/home/rstudio/work/project/source_data/")
 library(readr)
 library(ggplot2)
 library(tidyverse)

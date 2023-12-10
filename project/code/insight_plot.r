@@ -1,6 +1,8 @@
 library(readr)
 library(ggplot2)
 library(tidyverse)
+library(dplyr)
+setwd("~/work/611/")
 job <- read_csv("generate/cleaned.csv")
 
 
@@ -75,9 +77,46 @@ plot4 <- ggplot(data = job, aes(x = reorder(state, -table(state)[state]), fill =
     legend.key.size = unit(0.5, "lines")  # Adjust the legend key size as needed
   )
 
+plot5 <- ggplot() +
+  geom_density(data = job %>% filter(state == "CA"),
+               aes(x = max_salary, fill = state), alpha = 0.5, position =position_dodge(width = 2)) +
+  
+  geom_density(data = job %>% filter(state != "CA"),
+               aes(x = max_salary), color = "blue") +
+  labs(title = "Density Plot of Max Salary in CA (Pink) and Other States (Blue)",
+       x = "Max Salary(dollar/year)",
+       y = "Density") +
+  theme_minimal() +
+  guides(fill = guide_legend(title = "State", override.aes = list(color = c("pink")))) +
+  theme(legend.position = "top")  
 
-ggsave(filename = "generate/plot1.png", plot = plot1, device = "png", width=6, height=4,units = "in")
-ggsave(filename = "generate/plot2.png", plot = plot2, device = "png", width=6, height=4,units = "in")
-ggsave(filename = "generate/plot3.png", plot = plot3, device = "png", width=6, height=4,units = "in")
-ggsave(filename = "generate/plot4.png", plot = plot4, device = "png", width=6, height=4,units = "in")
+ggsave(filename = "output/plot1.png", plot = plot1, device = "png", width=6, height=4,units = "in")
+ggsave(filename = "output/plot2.png", plot = plot2, device = "png", width=6, height=4,units = "in")
+ggsave(filename = "output/plot3.png", plot = plot3, device = "png", width=8, height=4,units = "in")
+ggsave(filename = "output/plot4.png", plot = plot4, device = "png", width=6, height=4,units = "in")
+ggsave(filename = "output/plot5.png", plot = plot5, device = "png", width=6, height=4,units = "in")
+
+
+## Carry out a two sample T test to compare the max salary in CA and other part of USA
+# Extract salaries for California and other states
+salaries_CA <- job %>% filter(state == "CA")
+salaries_other_states <- job %>% filter(state != "CA")
+# Perform two-sample t-test
+t_test_result <- t.test(salaries_CA$max_salary, salaries_other_states$max_salary)
+
+
+## the relationship between the number of views with the location, level,  max salary
+job <- job %>% mutate(isca = ifelse(state == "CA", 1, 0))
+job <- job %>%
+  mutate(level = case_when(
+    formatted_experience_level == "Internship" ~ 1,
+    formatted_experience_level == "Entry level" ~ 2,
+    formatted_experience_level == "Associate" ~ 3,
+    formatted_experience_level == "Mid-Senior level" ~ 4,
+    formatted_experience_level == "Director" ~ 5,
+    formatted_experience_level == "Executive" ~ 6 # Handles other cases or unknowns
+  ))
+model <- lm(views ~  isca + formatted_experience_level + max_salary, data = job)
+summary(model)
+
 

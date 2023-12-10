@@ -25,13 +25,6 @@ Then cd into the correct repository
 cd 611_project_Yin
 ```
 
-
-
-
-
-
-
-
 One Docker container is provided for both "production" and
 "development." To build it, you will need to create a Dockerfile as in main 
 directory. Then you run:
@@ -50,6 +43,12 @@ docker run --rm -v $(pwd):/home/rstudio/work -p 8789:8787 -it my_image
 
 You then visit http://localhost:8789 via a browser on your machine to
 access the machine and development environment. 
+
+Then cd into the correct repository
+```
+cd 611_project_Yin
+```
+
 
 Project Organization
 ====================

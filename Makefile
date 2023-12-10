@@ -2,6 +2,8 @@
 
 clean:
 	rm -f output/*
+	rm -f project/code/writeup_report.html
+	rm -f generate/*
 	
 output/cleaned.csv: project/source_data/updated/job_postings.csv\
  project/code/prepare.r

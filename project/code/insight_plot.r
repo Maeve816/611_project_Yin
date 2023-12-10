@@ -2,7 +2,6 @@ library(readr)
 library(ggplot2)
 library(tidyverse)
 library(dplyr)
-setwd("~/work/611/")
 job <- read_csv("/home/rstudio/work/output/cleaned.csv")
 
 

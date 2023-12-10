@@ -1,0 +1,137 @@
+---
+title: "Final Report"
+author: "Yin Liu"
+date: "2023-12-10"
+output: html_document
+---
+
+## Introduction
+
+
+This report delves into a comprehensive dataset of job postings from LinkedIn, providing a unique perspective on the current job market. As a leading professional networking platform, LinkedIn's data offers insights into job roles, industries, geographical locations, salary ranges, and required skills. Our analysis aims to uncover significant trends and patterns that inform the ever-evolving landscape of employment.
+
+## Analysis Goals
+
+The primary goals of this analysis are to:
+
+
+1. To visualize the distribution of maximum and minimum salary ranges across the job market to understand compensation trends.
+2. To assess the prevalence of different types of employment (full-time, part-time, contract, etc.) and how they are represented in the job market.
+3. To examine the distribution of job postings across various states, providing insight into the geographical dynamics of job availability.
+4. To compare the density of maximum salaries in a high-employment state such as California against other states, offering a lens into regional salary disparities.
+5. To assess whether there is a significant difference in the mean maximum salaries between job postings in California (CA) and those in the other states.
+6. To study the relationship between the number of views with the location, level,  max salary.
+
+These goals are pursued with the intent to provide actionable insights for job seekers, recruiters, and policymakers.
+
+
+## Visualize the distribution of the maximum and minimum salary ranges across the job market
+
+You can also embed plots, for example:
+
+```{r }
+#setwd("/home/rstudio/work/611/")
+knitr::include_graphics("/home/rstudio/work/611/output/plot1.png")
+knitr::include_graphics("/home/rstudio/work/611/output/plot2.png")
+
+```
+Both plots exhibit right-skewed distributions, indicating:
+
+1. Salary Range: The job market offers a wide range of salaries, with most positions falling within mid to lower salary brackets.
+2. Variability: There is significant variability in compensation, with some job postings offering higher maximum salaries and others providing lower minimum salaries.
+3. Outliers: On the right side of the distributions, outliers represent specialized roles or high-demand positions that command premium compensation.
+
+In summary, these plots collectively show the diversity of salary offerings in the job market, spanning from lower-paying roles to high-earning opportunities. Job seekers can use this information to gauge salary expectations, while employers can assess how their compensation packages compare to market trends.
+
+
+
+## Assess the prevalence of different types of employment 
+```{r}
+
+#setwd("/home/rstudio/work/611/")
+knitr::include_graphics("/home/rstudio/work/611/output/plot3.png")
+```
+By showing the presence of part-time and contract work options, the plot suggests that there is demand for flexible work arrangements in addition to traditional full-time positions.
+
+
+## Distribution of job postings across various states
+
+```{r}
+
+#setwd("/home/rstudio/work/611/")
+knitr::include_graphics("/home/rstudio/work/611/output/plot4.png")
+```
+
+Geographical Dispersion: The histogram showcases the dispersion of job opportunities across various states or regions.
+Hotspots: States with tall bars indicate high job availability, suggesting they are employment hotspots.
+Regional Variations: Differences in bar heights demonstrate regional disparities in job opportunities. Some states may have a higher concentration of job postings, while others may offer fewer options.
+Insight for Job Seekers: Job seekers can use this information to target states or regions with a higher volume of job postings in their desired field.
+Regional Insights for Employers: Employers can assess the competition in specific states and tailor their recruitment strategies accordingly.
+
+##  Density of maximum salaries in California against other states
+
+
+```{r}
+#setwd("/home/rstudio/work/611/")
+knitr::include_graphics("/home/rstudio/work/611/output/plot5.png")
+```
+
+In Plot 5, the pink shaded area represents the density of maximum salaries in California, while the blue line represents the density in other states. This visualization enables a direct comparison of salary distributions between California and other regions. Differences in the shape and position of the density curves highlight regional variations in maximum salaries. We can see that the density in CA is more right-skewed, which indicate that the maxmum salaries tend to be higher than the other parts of the state.
+
+## Difference in the mean maximum salaries between job postings in CA and other states.
+
+A two-sample t-test was conducted to compare the maximum salaries in California (CA) and the other states. The results are as follows:
+
+Null Hypothesis (H0): There is no significant difference in the mean maximum salaries between California (CA) and the other states.
+Alternative Hypothesis (Ha): There is a significant difference in the mean maximum salaries between California (CA) and the other states.
+
+The t-test yielded a t-value of 3.9353, with approximately 1388.9 degrees of freedom. The p-value, calculated at 8.721e-05 (or 0.00008721), is much smaller than the typical significance level of 0.05, indicating strong evidence against the null hypothesis. Therefore, we reject the null hypothesis, concluding that there is a significant difference in mean maximum salaries between California (CA) and the other states.
+
+The 95 percent confidence interval for the difference in means is (6019.26, 17984.98), which does not include zero, further supporting the conclusion of a significant difference. Specifically, the mean maximum salary in California (CA) is approximately 129,652.60 dollar/year, while in the other states, it is approximately 117,650.50 dollar/year.
+
+In summary, the analysis goal was to investigate regional salary disparities, and the t-test results provide robust evidence of a significant difference in mean maximum salaries, with California (CA) showing higher average maximum salaries compared to the other states.
+
+## Relationship between the number of views with the location, level,  max salary
+
+A linear regression model was fitted with the formula views ~ isca + formatted_experience_level + max_salary. Here's the interpretation of the model summary:
+
+Residuals: The residuals represent the differences between the observed number of views and the predicted values by the model. The summary provides statistics related to the residuals, including the minimum, 1st quartile, median, 3rd quartile, and maximum values.
+
+Coefficients: The coefficients table provides estimates for each predictor variable:
+Intercept: The intercept represents the expected number of views when all other predictor variables are zero. In this case, it's approximately 107.3.
+
+isca: This binary predictor variable (1 for California, 0 for other states) has a coefficient of approximately -26.44. A negative coefficient suggests that job postings in California may have lower expected views compared to other states.
+
+formatted_experience_level: This categorical predictor variable represents different experience levels, and it includes several levels. Each level has its own coefficient:
+
+"Director" level has a coefficient of approximately 37.11, indicating that job postings at this level tend to have higher expected views.
+
+"Entry level" has a coefficient of approximately -61.59, suggesting that entry-level job postings have lower expected views.
+
+"Executive" has a coefficient of approximately -61.19, indicating lower expected views for executive-level job postings.
+
+"Internship" has a coefficient of approximately -66.01, suggesting lower expected views for internship-level job postings.
+
+"Mid-Senior level" has a coefficient of approximately -27.18, indicating lower expected views for mid-senior level job postings.
+
+max_salary: This numeric predictor represents the maximum salary, and it has a coefficient of approximately 0.0002143. A positive coefficient suggests that as the maximum salary increases, the expected number of views also increases.
+
+Significance Codes: Significance codes indicate the significance of each predictor variable. Variables with "***" have very high significance (p-value < 0.001), indicating strong evidence of their impact on views.
+
+Residual Standard Error: The residual standard error is 177.4, representing the standard error of the residuals. It measures the typical error in predicting the number of views.
+
+Multiple R-squared: The multiple R-squared value is 0.0378, indicating that the predictor variables collectively explain approximately 3.78% of the variance in the number of views.
+
+Adjusted R-squared: The adjusted R-squared value is 0.03581, a modified version of R-squared that adjusts for the number of predictor variables in the model.
+
+F-statistic: The F-statistic is 18.94, assessing the overall significance of the model. The extremely small p-value (p-value: < 2.2e-16) suggests that the model as a whole is highly significant.
+
+## Future questions
+
+Here are three shorter future questions suggested by the analysis:
+
+Unexplained Variance: What factors beyond location, experience level, and maximum salary contribute to the remaining unexplained variance in job views, and how can they be incorporated into the analysis?
+
+Interaction Effects: Are there interactions between location, experience level, and maximum salary that influence job views, and if so, how do these interactions affect the predictions?
+
+Temporal Trends: What are the temporal trends in job views, and how do seasonal or long-term changes impact the dynamics of job postings and views over time?

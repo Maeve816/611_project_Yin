@@ -17,15 +17,27 @@ to run the code.
 
 Clone my github repository to local:
 ```
-git clone -b master https://github.com/Maeve816/611_project_Yin
+git clone https://github.com/Maeve816/611_project_Yin
 ```
+
+Then cd into the correct repository
+```
+cd 611_project_Yin
+```
+
+
+
+
+
+
+
 
 One Docker container is provided for both "production" and
 "development." To build it, you will need to create a Dockerfile as in main 
 directory. Then you run:
 
 ```
-docker build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=1234 -t my_image 
+docker build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=1234 -t my_image .
 ```
 
 This will create a docker container. Users should be able to get a password and

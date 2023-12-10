@@ -2,8 +2,7 @@ library(readr)
 library(ggplot2)
 library(tidyverse)
 
-setwd("~/work/611/")
-job_postings <- read_csv("project/source_data/updated/job_postings.csv")
+job_postings <- read_csv("/home/rstudio/work/project/source_data/updated/job_postings.csv")
 
 
 ## dealing with missings
@@ -34,5 +33,5 @@ job <- job %>%
 
 job <- job[job$max_salary>=1000,] ## exclude those do not make sense
 
-write_csv(job,"output/cleaned.csv")
+write_csv(job,"/home/rstudio/work/output/cleaned.csv")
 

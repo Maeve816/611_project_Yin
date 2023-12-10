@@ -30,9 +30,8 @@ These goals are pursued with the intent to provide actionable insights for job s
 You can also embed plots, for example:
 
 ```{r }
-#setwd("/home/rstudio/work/611/")
-knitr::include_graphics("/home/rstudio/work/611/output/plot1.png")
-knitr::include_graphics("/home/rstudio/work/611/output/plot2.png")
+knitr::include_graphics("/home/rstudio/work/output/plot1.png")
+knitr::include_graphics("/home/rstudio/work/output/plot2.png")
 
 ```
 Both plots exhibit right-skewed distributions, indicating:
@@ -48,8 +47,7 @@ In summary, these plots collectively show the diversity of salary offerings in t
 ## Assess the prevalence of different types of employment 
 ```{r}
 
-#setwd("/home/rstudio/work/611/")
-knitr::include_graphics("/home/rstudio/work/611/output/plot3.png")
+knitr::include_graphics("/home/rstudio/work/output/plot3.png")
 ```
 By showing the presence of part-time and contract work options, the plot suggests that there is demand for flexible work arrangements in addition to traditional full-time positions.
 
@@ -58,8 +56,7 @@ By showing the presence of part-time and contract work options, the plot suggest
 
 ```{r}
 
-#setwd("/home/rstudio/work/611/")
-knitr::include_graphics("/home/rstudio/work/611/output/plot4.png")
+knitr::include_graphics("/home/rstudio/work/output/plot4.png")
 ```
 
 Geographical Dispersion: The histogram showcases the dispersion of job opportunities across various states or regions.
@@ -72,8 +69,7 @@ Regional Insights for Employers: Employers can assess the competition in specifi
 
 
 ```{r}
-#setwd("/home/rstudio/work/611/")
-knitr::include_graphics("/home/rstudio/work/611/output/plot5.png")
+knitr::include_graphics("/home/rstudio/work/output/plot5.png")
 ```
 
 In Plot 5, the pink shaded area represents the density of maximum salaries in California, while the blue line represents the density in other states. This visualization enables a direct comparison of salary distributions between California and other regions. Differences in the shape and position of the density curves highlight regional variations in maximum salaries. We can see that the density in CA is more right-skewed, which indicate that the maxmum salaries tend to be higher than the other parts of the state.

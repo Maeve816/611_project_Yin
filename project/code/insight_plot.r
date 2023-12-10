@@ -3,7 +3,7 @@ library(ggplot2)
 library(tidyverse)
 library(dplyr)
 setwd("~/work/611/")
-job <- read_csv("generate/cleaned.csv")
+job <- read_csv("/home/rstudio/work/output/cleaned.csv")
 
 
 
@@ -90,11 +90,11 @@ plot5 <- ggplot() +
   guides(fill = guide_legend(title = "State", override.aes = list(color = c("pink")))) +
   theme(legend.position = "top")  
 
-ggsave(filename = "output/plot1.png", plot = plot1, device = "png", width=6, height=4,units = "in")
-ggsave(filename = "output/plot2.png", plot = plot2, device = "png", width=6, height=4,units = "in")
-ggsave(filename = "output/plot3.png", plot = plot3, device = "png", width=8, height=4,units = "in")
-ggsave(filename = "output/plot4.png", plot = plot4, device = "png", width=6, height=4,units = "in")
-ggsave(filename = "output/plot5.png", plot = plot5, device = "png", width=6, height=4,units = "in")
+ggsave(filename = "/home/rstudio/work/output/plot1.png", plot = plot1, device = "png", width=6, height=4,units = "in")
+ggsave(filename = "/home/rstudio/work/output/plot2.png", plot = plot2, device = "png", width=6, height=4,units = "in")
+ggsave(filename = "/home/rstudio/work/output/plot3.png", plot = plot3, device = "png", width=8, height=4,units = "in")
+ggsave(filename = "/home/rstudio/work/output/plot4.png", plot = plot4, device = "png", width=6, height=4,units = "in")
+ggsave(filename = "/home/rstudio/work/output/plot5.png", plot = plot5, device = "png", width=6, height=4,units = "in")
 
 
 ## Carry out a two sample T test to compare the max salary in CA and other part of USA
